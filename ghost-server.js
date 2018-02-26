@@ -12,12 +12,11 @@ server.use(bodyParser.json());
 
 
 
-server.post('/', (req, res, next) => {
+server.post('/:_id', (req, res, next) => {
+  const { _id } = req.params ;
   const { MONGO_URL } = req.webtaskContext.secrets;
-  const { _id } = req.body ;
-  // Do data sanitation here.
   const model = req.body;
-  console.log('model', model);
+  
   MongoClient.connect(MONGO_URL, (err, db) => {
     if (err) return next(err);
     // db.collection(collection).insertOne(model, (err, result) => {
