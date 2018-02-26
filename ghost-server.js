@@ -8,8 +8,8 @@ import { ObjectID } from 'mongodb';
 const collection = 'ghost-sessions';
 const server = express();
 
-server.use(bodyParser.json());
-// server.use(bodyParser.json({limit: '50mb'}));
+// server.use(bodyParser.json());
+server.use(bodyParser.json({limit: '50mb'}));
 
 server.get('/:_id', (req, res, next) => {
   const { _id } = req.params ;
