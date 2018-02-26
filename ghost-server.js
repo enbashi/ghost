@@ -9,7 +9,7 @@ const collection = 'ghost-sessions';
 const server = express();
 
 // server.use(bodyParser.json());
-server.use(bodyParser.json({limit: '50mb'}));
+server.use(bodyParser.json({limit: '5mb', extended: true}));
 
 
 
