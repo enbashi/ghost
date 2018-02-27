@@ -27,16 +27,21 @@ server.get('/:_id', (req, res, next) => {
 
 
 server.post('/:_id', (req, res, next) => {
+  console.log('start');
   const { _id } = req.params ;
   const { MONGO_URL } = req.webtaskContext.secrets;
   const model = req.body;
   
+  console.log('model', model);
+  
   MongoClient.connect(MONGO_URL, (err, db) => {
+    console.log('connect');
     if (err) return next(err);
     // db.collection(collection).insertOne(model, (err, result) => {
     db.collection(collection).update({_id}, model, { upsert : true }, (err, result) => {
       db.close();
       if (err) return next(err);
+      console.log('result', result);
       res.status(200).send(result);
     });
   });
